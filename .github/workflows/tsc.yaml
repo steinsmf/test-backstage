@@ -1,0 +1,25 @@
+name: Test
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'test'
+        type: choice
+        default: 'test'
+        options:
+          - test
+          - test2
+run-name: Test
+defaults:
+  run:
+    shell: bash
+jobs:
+  # 1. setup
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo rollback status
+        run: |
+          echo "## Test" >> $GITHUB_STEP_SUMMARY
+          echo "- Test: test" >> $GITHUB_STEP_SUMMARY
